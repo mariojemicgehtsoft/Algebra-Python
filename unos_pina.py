@@ -31,8 +31,8 @@ while True:
 while True:
   
     pin=input("Unesi Pin :" )
-    pin=pin.replace('-', '')
-
+    pin=pin.replace('#', '')
+    pin=pin.replace('*', '')
     max= len(pin)
     if max< 8:
       print("Minimalni Broj znakova je 8")
