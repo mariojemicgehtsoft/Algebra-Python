@@ -47,9 +47,9 @@ while (True):
       os.system('cls')
       ispis()         
       izbor= int(input(tko +" Izaberi Index : ")) 
-      y=adresa[izbor][0] 
-      x=adresa[izbor][1] 
-      stanje[y][x]=tko
+      #y=adresa[izbor][0] x=adresa[izbor][1] 
+      #stanje[       y       ][        x       ]=tko 
+      stanje[adresa[izbor][0]][adresa[izbor][1]]=tko
       if tko=="x":
          tko="o"
       elif tko=="o":
