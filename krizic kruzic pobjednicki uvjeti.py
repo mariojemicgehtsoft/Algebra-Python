@@ -51,6 +51,8 @@ while (True):
          tko="x"      
       pobjednik=provjera()
       if pobjednik != 0:
+         os.system('cls')
+         ispis()
          print(str(pobjednik) + " pobjeduje")
          nova_igra=  input( " Za novu igru upisi New : ")
          if nova_igra != "New": 
