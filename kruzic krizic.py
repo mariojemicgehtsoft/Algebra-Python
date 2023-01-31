@@ -1,4 +1,5 @@
 import os
+vracanje_stanja=[[1,2,3],[4,5,6],[7,8,9]]
 stanje=[[1,2,3],[4,5,6],[7,8,9]]
 adresa={1:[0,0], 2:[0,1], 3:[0,2], 4:[1,0], 5:[1,1], 6:[1,2], 7:[2,0], 8:[2,1], 9:[2,2]}
 def provjera():
@@ -56,4 +57,8 @@ while (True):
       pobjednik=provjera()
       if pobjednik != 0:
          print(str(pobjednik) + " pobjeduje")
-         break
+         nova_igra=  input( " Za novu igru upisi New : ")
+         if nova_igra != "New": 
+            break
+         else:
+            stanje=vracanje_stanja
