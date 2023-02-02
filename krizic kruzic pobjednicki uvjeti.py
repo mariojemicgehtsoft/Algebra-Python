@@ -4,18 +4,26 @@ stanje=[[1,2,3],[4,5,6],[7,8,9]]
 adresa={1:[0,0], 2:[0,1], 3:[0,2], 4:[1,0], 5:[1,1], 6:[1,2], 7:[2,0], 8:[2,1], 9:[2,2]}
 pobjednicki_uvjet=[[1,2,3],[4,5,6],[7,8,9], [1,4,7], [2,5,8],   [3,6,7]    ,[3,5,7], [1,5,9]  ]
 tko={1:"x", 2:"o"}
+tko_nije={1:"o", 2:"x"}
+
+
 def izbor_polja(who):
     while True:
           izbor= int(input(tko[who] +" Izaberi Index : ")) 
-          if who==1:
-            if izbor >0 and izbor < 10 and stanje[adresa[izbor][0]][adresa[izbor][1]]!=tko[2]:
+   
+          if izbor >0 and izbor < 10 and stanje[adresa[izbor][0]][adresa[izbor][1]]!=tko_nije[who]:
+                     #y=adresa[izbor][0] x=adresa[izbor][1] 
+                     #stanje[       y       ][        x       ]=tko 
+               stanje[adresa[izbor][0]][adresa[izbor][1]]=tko[who]
                break
-          else:
-            if izbor >0 and izbor < 10 and stanje[adresa[izbor][0]][adresa[izbor][1]]!=tko[1]:
-               break            
+    if   who==1:
+         who=2
+    elif who==2:
+         who=1                  
 
 
-    return izbor       
+    return who     
+
 def provjera():
     winer=0
     for uvjet in pobjednicki_uvjet:
@@ -50,23 +58,13 @@ def ispis():
                
 os.system('cls')
 
-who=tko[1]
+who=1
 while (True): 
       os.system('cls')
-      ispis()    
-
-      if who=="x": 
-         izbor= izbor_polja(1)
-      else: 
-         izbor= izbor_polja(2) 
-      #y=adresa[izbor][0] x=adresa[izbor][1] 
-      #stanje[       y       ][        x       ]=tko 
-      stanje[adresa[izbor][0]][adresa[izbor][1]]=who
-      if who=="x":
-         who="o"
-      elif who=="o":
-         who="x"      
+      ispis()   
+      who=izbor_polja(who)       
       pobjednik=provjera()
+
       if pobjednik != 0:
          os.system('cls')
          ispis()
