@@ -15,7 +15,7 @@ def otvaranje_racuna():
          mjesto=input("Sjediste :") 
          while (True):  
             oib=int(input("OIB :")) 
-            if len(str(oib)) == 8 : 
+            if len(str(oib)) == 10 : 
                break
          odgovorna_osoba=input("Ime i prezime odgovorne osobe :") 
 
@@ -26,9 +26,25 @@ def otvaranje_racuna():
 
 
          novi_broj=len(baza_korisnika)+1
-         baza_korisnika.update({novi_broj: [naziv, ulica_i_broj,postanski_broj, mjesto, oib,odgovorna_osoba, currentMonth, currentYear ]})
+         baza_korisnika.update({novi_broj: [naziv, ulica_i_broj,postanski_broj, mjesto, oib,odgovorna_osoba, currentMonth, currentYear, number_shift(novi_broj) ]})
          baza_transkacija.update({novi_broj: []}) 
- 
+
+def  number_shift(broj): 
+  shifted=""
+  if broj < 10:
+     shifted=shifted+"00000"+str(broj)
+  elif broj < 100:
+       shifted=shifted+"0000"+str(broj)    
+  elif broj < 1000:
+       shifted=shifted+"000"+str(broj)   
+  elif broj < 10000:
+       shifted=shifted+"00"+str(broj)     
+  elif broj < 100000:
+       shifted=shifted+"0"+str(broj)        
+  else:
+      pass  
+  return shifted  
+
 def prikaz_stanja():
     broj_racuna=provjera_broj_racuna()
     if broj_racuna!=0:
@@ -37,7 +53,7 @@ def prikaz_stanja():
        for unos in baza:
            stanje=stanje+int(unos[0])
 
-       txt = "BA-" + str(baza_korisnika[broj_racuna][6]) + "-" + str(baza_korisnika[broj_racuna][7] )+  "-" + str(broj_racuna)
+       txt = "BA-" + str(baza_korisnika[broj_racuna][6]) + "-" + str(baza_korisnika[broj_racuna][7] )+  "-" +  str(baza_korisnika[broj_racuna][8])
        print(f"Stanje racuna {txt} : {stanje}")
  
   
@@ -62,7 +78,7 @@ def prikaz_prometa():
     if broj_racuna!=0:
        baza= baza_transkacija[broj_racuna] 
 
-       txt = "BA-" + str(baza_korisnika[broj_racuna][6]) + "-" + str(baza_korisnika[broj_racuna][7] )+  "-" + str(broj_racuna)
+       txt = "BA-" + str(baza_korisnika[broj_racuna][6]) + "-" + str(baza_korisnika[broj_racuna][7] )+  "-" + str(baza_korisnika[broj_racuna][8])
        print(f"Prometi po racunu {txt}")
        for unos in baza:
            print(f" {unos[1]} : {unos[0]}")
@@ -129,4 +145,4 @@ while(True):
        break
     else:
         print("Nepodrzani unos")
-             
+                   
